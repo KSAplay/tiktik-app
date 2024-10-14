@@ -10,9 +10,9 @@ import Logo from "../utils/tiktik-logo.png";
 
 export const Navbar = () => {
   return (
-    <div className="w-full h-[50px] flex justify-between items-center border-b-2 border-gray-200 py-2 px-4">
+    <div className="w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4">
       <Link href={""}>
-        <div className="w-[100px] md:w-[130px] bg-green-400">
+        <div className="w-[100px] md:w-[130px]">
           <Image
             className="cursor-pointer"
             src={Logo}
@@ -20,7 +20,6 @@ export const Navbar = () => {
             layout="intrinsic"
           />
         </div>
-        <div className="w-[100px] md:w-[130px] bg-green-400">asd</div>
       </Link>
     </div>
   );
