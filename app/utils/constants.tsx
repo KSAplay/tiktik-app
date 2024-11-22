@@ -4,60 +4,68 @@ import { FaPaw, FaMedal, FaGamepad } from "react-icons/fa";
 
 export const topics = [
   {
-    name: "development",
+    name: "coding",
     icon: <BsCode />,
+    iconGradient: <BsCode fill="url(#grad)" />,
   },
   {
-    name: "comedy",
+    name: "comedia",
     icon: <BsEmojiSunglasses />,
+    iconGradient: <BsEmojiSunglasses fill="url(#grad)" />,
   },
   {
-    name: "gaming",
+    name: "juegos",
     icon: <FaGamepad />,
+    iconGradient: <FaGamepad fill="url(#grad)" />,
   },
   {
-    name: "food",
+    name: "comida",
     icon: <GiCakeSlice />,
+    iconGradient: <GiCakeSlice fill="url(#grad)" />,
   },
   {
-    name: "dance",
+    name: "bailes",
     icon: <GiGalaxy />,
+    iconGradient: <GiGalaxy fill="url(#grad)" />,
   },
   {
-    name: "beauty",
+    name: "belleza",
     icon: <GiLipstick />,
+    iconGradient: <GiLipstick fill="url(#grad)" />,
   },
   {
-    name: "animals",
+    name: "animales",
     icon: <FaPaw />,
+    iconGradient: <FaPaw fill="url(#grad)" />,
   },
   {
-    name: "sports",
+    name: "deportes",
     icon: <FaMedal />,
+    iconGradient: <FaMedal fill="url(#grad)" />,
   },
 ];
 
 export const footerList1 = [
-  "About",
-  "Newsroom",
-  "Store",
-  "Contact",
-  "Carrers",
+  "Acerca de",
+  "Noticias",
+  "Tienda",
+  "Contacto",
+  "Carreras",
   "ByteDance",
-  "Creator Directory",
+  "Directorio de Creadores",
 ];
 export const footerList2 = [
-  "TikTik for Good",
-  "Advertise",
-  "Developers",
-  "Transparency",
-  "TikTik Rewards",
+  "TikTik para el Bien",
+  "Anunciar",
+  "Desarrolladores",
+  "Transparencia",
+  "Premios TikTik",
 ];
 export const footerList3 = [
-  "Help",
-  "Safety",
-  "Terms",
-  "Privacy",
-  "Creator Portal",
-  "Community Guidelines",
+  "Ayuda",
+  "Seguridad",
+  "Términos",
+  "Privacidad",
+  "Portal del Creador",
+  "Normas de la comunidad",
 ];

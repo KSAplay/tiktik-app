@@ -38,6 +38,11 @@ const config: Config = {
       },
     },
   },
+  variants: {
+    extend: {
+      before: ['hover'],
+    },
+  },
   plugins: [],
 };
 export default config;

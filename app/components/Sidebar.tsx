@@ -10,6 +10,7 @@ import { ImCancelCircle } from "react-icons/im";
 import { Discover } from "./Discover";
 import { SuggestedAccounts } from "./SuggestedAccounts";
 import { Footer } from "./Footer";
+import { svgGradient } from "../utils/svgGradient";
 
 export const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -38,26 +39,7 @@ export const Sidebar = () => {
               <div className={normalLinkHover}>
                 <div className={normalLink}>
                   <p className="text-2xl">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <defs>
-                        <linearGradient
-                          id="grad"
-                          x1="0%"
-                          y1="0%"
-                          x2="0%"
-                          y2="100%"
-                        >
-                          <stop offset="0%" stopColor="#FFA600" />
-                          <stop offset="100%" stopColor="#FF007D" />
-                        </linearGradient>
-                      </defs>
-                      <AiFillHome fill="url(#grad)" />
-                    </svg>
+                    {svgGradient(<AiFillHome fill="url(#grad)" />)}
                   </p>
                   <span className="text-xl hidden xl:block">Para ti</span>
                 </div>
@@ -66,15 +48,19 @@ export const Sidebar = () => {
           </div>
           {!userProfile && (
             <div className="px-2 py-4 hidden xl:block">
-              <p className="text-gray-400">
+              <p className="text-gray-400 text-sm">
                 Inicia sesión para dar me gusta y comentar los videos
               </p>
               <div className="pr-4">
                 <button
-                  className="cursor-pointer bg-white text-lg text-[#FF007D] border-[1px] border-[#FF007D] font-semibold px-6 py-3 rounded-md outline-none w-full mt-3 hover:text-white hover:bg-[#FF007D]"
+                  className="cursor-pointer relative flex items-center justify-center rounded-md bg-white before:absolute before:content-[''] before:rounded-md 
+                            before:bg-gradient-to-b before:from-[#FFA600] before:to-[#FF007D] before:w-[101%] before:h-[110%] before:-z-10 font-semibold outline-none w-full mt-3
+                            hover:bg-transparent transition-all"
                   onClick={() => login()}
                 >
-                  Iniciar Sesión
+                  <div className="bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent hover:text-white w-full h-full px-6 py-3 transition-all">
+                    Iniciar Sesión
+                  </div>
                 </button>
               </div>
             </div>
