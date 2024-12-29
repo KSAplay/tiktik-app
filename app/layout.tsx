@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "./components/Navbar";
-import { Sidebar } from "./components/Sidebar";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import ClientLayout from "./ClientLayout";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -23,9 +22,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <GoogleOAuthProvider clientId="817671314675-ak9me0l8cc896u2tdk3dhunl3gnvkgc8.apps.googleusercontent.com">
       <html lang="es">
@@ -34,18 +33,9 @@ export default function RootLayout({
         </head>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          suppressHydrationWarning={true}
         >
-          <div>
-            <Navbar />
-            <div className="flex gap-6 md:gap-20">
-              <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
-                <Sidebar />
-              </div>
-              <div className="mt-4 flex flex-col gap-10 overflow-auto h-[88vh]">
-                {children}
-              </div>
-            </div>
-          </div>
+          <ClientLayout>{children}</ClientLayout>
         </body>
       </html>
     </GoogleOAuthProvider>

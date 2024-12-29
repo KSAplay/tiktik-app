@@ -5,8 +5,8 @@ import { topics } from "../utils/constants";
 import { svgGradient } from "../utils/svgGradient";
 
 export const Discover = () => {
-  const search = useSearchParams();
-  const topic = search.get("topic");
+  const searchParams = useSearchParams();
+  const topic = searchParams.get("topic");
   const activeTopicStyle = `relative hover:bg-primary px-3 py-2 rounded xl:rounded-full flex items-center gap-2
     justify-center cursor-pointer bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent`;
   const activeTopicBgStyle = `mt-[2px] mx-[2px] relative flex items-center justify-center bg-white rounded-full before:absolute before:content-[''] before:rounded-full 
