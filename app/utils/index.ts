@@ -1,6 +1,42 @@
-import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+// Definir la interfaz del token decodificado
+interface DecodedToken {
+  name: string;
+  picture: string;
+  sub: string;
+}
 
-export const createOrGetUser = async (response: unknown, addUser: unknown) => {
+// Definir la interfaz de usuario
+interface User {
+  _id: string;
+  _type: string;
+  userName: string;
+  image: string;
+}
+
+export const createOrGetUser = async (response: { credential: string }, addUser: (user: User) => void) => {
+  // Decodificar el token
+  const decode: { name: string, picture: string, sub: string } = jwtDecode<DecodedToken>(response.credential);
+  const { name, picture, sub } = decode;
+
+  // Crear el objeto de usuario
+  const user: User = {
+    _id: sub,
+    _type: "user",
+    userName: name,
+    image: picture,
+  };
+
+  // Agregar el usuario al store
+  addUser(user);
+
+  // Enviar los datos a la API
+  await fetch("/api/auth", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(user)
+  });
 };

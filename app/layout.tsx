@@ -26,7 +26,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <GoogleOAuthProvider clientId="817671314675-ak9me0l8cc896u2tdk3dhunl3gnvkgc8.apps.googleusercontent.com">
+    <GoogleOAuthProvider
+      clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}`}
+    >
       <html lang="es">
         <head>
           <link rel="icon" href="./favicon.ico" />
