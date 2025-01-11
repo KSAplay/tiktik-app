@@ -30,7 +30,7 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
   const buttonStyle = "text-2xl text-white lg:text-3xl drop-shadow-lg";
 
   return (
-    <div className="flex flex-col border-b-2 border-gray-200 pb-6">
+    <div className="flex flex-col border-b-2 border-gray-200 pb-6 w-full">
       <div>
         <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
           <div className="md:w-16 md:h-16 w-10 h-10">
