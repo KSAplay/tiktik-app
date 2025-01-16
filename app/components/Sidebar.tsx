@@ -1,10 +1,7 @@
 "use client";
 
 import { useState } from "react";
-// import { NextPage } from "next";
-// import { useRouter } from "next/router";
 import Link from "next/link";
-import { useGoogleLogin } from "@react-oauth/google";
 import { AiFillHome, AiOutlineMenu } from "react-icons/ai";
 import { ImCancelCircle } from "react-icons/im";
 import { Discover } from "./Discover";
@@ -18,11 +15,6 @@ export const Sidebar = () => {
   const normalLink =
     "flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent";
   const normalLinkHover = "hover:bg-primary rounded";
-  const userProfile = false;
-  const login = useGoogleLogin({
-    onSuccess: (tokenResponse) => console.log(tokenResponse),
-    onError: () => console.log("Login Failed"),
-  });
 
   return (
     <>
@@ -46,25 +38,6 @@ export const Sidebar = () => {
               </div>
             </Link>
           </div>
-          {!userProfile && (
-            <div className="px-2 py-4 hidden xl:block">
-              <p className="text-gray-400 text-sm">
-                Inicia sesión para dar me gusta y comentar los videos
-              </p>
-              <div className="pr-4">
-                <button
-                  className="cursor-pointer relative flex items-center justify-center rounded-md bg-white before:absolute before:content-[''] before:rounded-md 
-                            before:bg-gradient-to-b before:from-[#FFA600] before:to-[#FF007D] before:w-[101%] before:h-[110%] before:-z-10 font-semibold outline-none w-full mt-3
-                            hover:bg-transparent transition-all"
-                  onClick={() => login()}
-                >
-                  <div className="bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent hover:text-white w-full h-full px-6 py-3 transition-all">
-                    Iniciar Sesión
-                  </div>
-                </button>
-              </div>
-            </div>
-          )}
 
           <Discover />
           <SuggestedAccounts />

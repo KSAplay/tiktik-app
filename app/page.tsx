@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/api/post");
+      const response = await fetch("/api/post");
       const result = await response.json();
       setVideos(result);
     };

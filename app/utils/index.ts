@@ -1,5 +1,8 @@
 import { jwtDecode } from 'jwt-decode';
 
+// Definir la URL base
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
 // Definir la interfaz del token decodificado
 interface DecodedToken {
   name: string;

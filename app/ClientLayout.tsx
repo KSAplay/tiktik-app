@@ -13,13 +13,13 @@ export default function ClientLayout({
   const isStudioRoute = pathname.startsWith("/studio");
 
   return !isStudioRoute ? (
-    <div>
+    <div className="xl:max-w-[1600px] m-auto overflow-hidden h-[100vh]">
       <Navbar />
       <div className="flex gap-6 md:gap-20">
         <div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
           <Sidebar />
         </div>
-        <div className="mt-4 flex flex-col gap-10 overflow-auto h-[88vh] w-full">
+        <div className="mt-2 flex flex-1 flex-col gap-10 overflow-auto h-[88vh]">
           {children}
         </div>
       </div>
