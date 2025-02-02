@@ -1,22 +1,16 @@
+import { IUser } from '@/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface User {
-  _id: string;
-  _type: string;
-  userName: string;
-  image: string;
-}
-
 interface AuthState {
-  userProfile: User | null;
-  addUser: (user: User) => void;
+  userProfile: IUser | null;
+  addUser: (user: IUser) => void;
   removeUser: () => void;
 }
 
 const authStore = (set: (fn: (state: AuthState) => AuthState) => void): AuthState => ({
   userProfile: null,
-  addUser: (user: User) => set((state) => ({ ...state, userProfile: user })),
+  addUser: (user: IUser) => set((state) => ({ ...state, userProfile: user })),
   removeUser: () => set((state) => ({ ...state, userProfile: null })),
 });
 
