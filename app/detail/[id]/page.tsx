@@ -136,8 +136,8 @@ export default function DetailPage() {
         </div>
       </div>
       <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
-        <div className="mt-10 lg:mt-20">
-          <div className="px-10 flex gap-3 p-2 cursor-pointer font-semibold rounded">
+        <div className="px-10 mt-10 lg:mt-20">
+          <div className="flex gap-3 pb-2 cursor-pointer font-semibold rounded">
             <div className="md:w-16 md:h-16 w-10 h-10">
               <Link href="/">
                 <Image
@@ -164,9 +164,9 @@ export default function DetailPage() {
             </div>
           </div>
 
-          <p className="px-10 mt-2 text-base text-gray-600">{post.caption}</p>
+          <p className="mt-2 text-base text-gray-600">{post.caption}</p>
 
-          <div className="flex flex-col justify-center mt-2 px-10">
+          <div className="mt-2 flex flex-col justify-center">
             {userProfile && (
               <LikeButton
                 likes={post.likes}
