@@ -3,7 +3,8 @@
 import { Video } from "@/types";
 import { useState, useEffect } from "react";
 import { VideoCard } from "./components/VideoCard";
-import { NoResult } from "./components/NoResult";
+import { NoResults } from "./components/NoResults";
+import { MdVideocamOff } from "react-icons/md";
 
 export default function Home() {
   const [videos, setVideos] = useState<Video[]>([]);
@@ -28,7 +29,7 @@ export default function Home() {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center h-full w-full">
-        <div className="animate-spin h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
       </div>
     );
   }
@@ -38,7 +39,7 @@ export default function Home() {
       {videos.length ? (
         videos.map((video: Video) => <VideoCard post={video} key={video._id} />)
       ) : (
-        <NoResult text="No hay videos disponibles" />
+        <NoResults text="No hay videos disponibles" icon={MdVideocamOff} />
       )}
     </div>
   );
