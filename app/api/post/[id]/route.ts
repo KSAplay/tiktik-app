@@ -1,6 +1,7 @@
 import { client } from "@/app/utils/client";
 import { postDetailQuery } from "@/app/utils/queries";
 import { NextResponse } from "next/server";
+import { v4 as uuid_v4 } from "uuid";
 
 export async function GET(req: Request, { params }: { params: { id: string } }
 ) {
@@ -32,6 +33,32 @@ export async function GET(req: Request, { params }: { params: { id: string } }
     console.error("Error al obtener el post:", error);
     return NextResponse.json(
       { message: "Error al obtener los detalles del post" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req: Request, { params }: { params: { id: string } }) {
+  try {
+    const { comment, userId } = await req.json();
+    const { id } = params;
+    const data = await client
+      .patch(id)
+      .setIfMissing({ comments: [] })
+      .insert('after', 'comments[-1]', [
+        {
+          comment,
+          _key: uuid_v4(),
+          postedBy: { _ref: userId },
+        },
+      ])
+      .commit();
+    return NextResponse.json(data);
+
+  } catch (error) {
+    console.error("Error creating comment:", error);
+    return NextResponse.json(
+      { error: "Failed to create comment", details: String(error) },
       { status: 500 }
     );
   }

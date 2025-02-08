@@ -12,6 +12,7 @@ import { BsFillPlayFill } from "react-icons/bs";
 import useAuthStore from "@/store/authStore";
 import Comments from "@/app/components/Comments";
 import LikeButton from "@/app/components/LikeButton";
+import { Any } from "next-sanity";
 
 export default function DetailPage() {
   const { id } = useParams();
@@ -21,6 +22,8 @@ export default function DetailPage() {
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const router = useRouter();
   const { userProfile } = useAuthStore();
+  const [comment, setComment] = useState("");
+  const [isPostingComment, setIsPostingComment] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
@@ -74,6 +77,29 @@ export default function DetailPage() {
       const data = await response.json();
       if (post) {
         setPost({ ...post, likes: data.likes });
+      }
+    }
+  };
+
+  const addComment = async (e: Any) => {
+    e.preventDefault();
+    if (userProfile && comment) {
+      setIsPostingComment(true);
+      const response = await fetch(`/api/post/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          comment,
+          userId: userProfile._id,
+        }),
+      });
+      const data = await response.json();
+      if (post) {
+        setPost({ ...post, comments: data.comments });
+        setComment("");
+        setIsPostingComment(false);
       }
     }
   };
@@ -175,7 +201,13 @@ export default function DetailPage() {
               />
             )}
           </div>
-          <Comments />
+          <Comments
+            comment={comment}
+            setComment={setComment}
+            addComment={addComment}
+            comments={post.comments}
+            isPostingComment={isPostingComment}
+          />
         </div>
       </div>
     </div>

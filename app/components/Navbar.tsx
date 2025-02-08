@@ -17,7 +17,12 @@ export const Navbar = () => {
     <div className="w-full flex justify-between items-center border-b-2 border-gray-200 py-3 px-4">
       <Link href="/">
         <div className="w-[100px] md:w-[160px]">
-          <Image className="cursor-pointer" src={Logo} alt="TikTik" />
+          <Image
+            className="cursor-pointer"
+            src={Logo}
+            alt="TikTik Logo"
+            priority
+          />
         </div>
       </Link>
 
