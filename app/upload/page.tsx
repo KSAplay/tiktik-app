@@ -16,6 +16,7 @@ const Upload = () => {
     SanityAssetDocument | undefined
   >();
   const [wrongFileType, setWrongFileType] = useState(false);
+  const [hashtags, setHashtags] = useState<string[]>([]);
   const [caption, setCaption] = useState("");
   const [category, setCategory] = useState(topics[0].name);
   const [savingPost, setSavingPost] = useState(false);
@@ -68,6 +69,7 @@ const Upload = () => {
           _ref: userProfile?._id,
         },
         topic: category,
+        hashtags,
       };
 
       await fetch("/api/post", {
@@ -165,6 +167,16 @@ const Upload = () => {
               value={caption}
               id="caption-video"
               onChange={(e) => setCaption(e.target.value)}
+              className="rounded outline-none text-base border-2 border-gray-200 p-2"
+            />
+            <label htmlFor="hashtags-video" className="text-base font-medium">
+              Hashtags
+            </label>
+            <input
+              type="text"
+              name="hashtags-video"
+              id="hashtags-video"
+              onChange={(e) => setHashtags(e.target.value.split(" "))}
               className="rounded outline-none text-base border-2 border-gray-200 p-2"
             />
             <label htmlFor="category-video" className="text-base font-medium">

@@ -1,5 +1,7 @@
-export interface Video {
+export interface IVideo {
   caption: string;
+  hashtags: string[];
+  topic: string;
   video: {
     asset: {
       _id: string;

@@ -4,7 +4,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 import { MdVerified } from "react-icons/md";
 import Image from "next/image";
-import { Video } from "@/types";
+import { IVideo } from "@/types";
 import Link from "next/link";
 import { MdOutlineCancel } from "react-icons/md";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
@@ -16,16 +16,15 @@ import { Any } from "next-sanity";
 
 export default function DetailPage() {
   const { id } = useParams();
-  const [post, setPost] = useState<Video | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const [isVideoMuted, setIsVideoMuted] = useState(false);
-  const router = useRouter();
+  const [post, setPost] = useState<IVideo | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [playing, setPlaying] = useState<boolean>(false);
+  const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
   const { userProfile } = useAuthStore();
-  const [comment, setComment] = useState("");
-  const [isPostingComment, setIsPostingComment] = useState(false);
-
+  const [comment, setComment] = useState<string>("");
+  const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const router = useRouter();
 
   const buttonStyle = "text-2xl text-white lg:text-3xl drop-shadow-lg";
 
@@ -190,7 +189,12 @@ export default function DetailPage() {
             </div>
           </div>
 
-          <p className="px-10 mt-2 text-base text-gray-600">{post.caption}</p>
+          <p className="px-10 mt-2 text-base text-gray-600">
+            {post.caption}{" "}
+            <span className="font-semibold text-primary">
+              {post.hashtags && post.hashtags.map((hashtag) => ` #${hashtag}`)}
+            </span>
+          </p>
 
           <div className="px-10 mt-2 mb-2 flex flex-col justify-center">
             {userProfile && (

@@ -38,6 +38,12 @@ const postSchema = {
       ],
     },
     {
+      name: 'hashtags',
+      title: 'Hashtags',
+      type: 'array',
+      of: [{ type: 'string' }],
+    },
+    {
       name: 'comments',
       title: 'Comments',
       type: 'array',
