@@ -125,7 +125,7 @@ export default function DetailPage() {
       <div className="relative flex-2 w-[900px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
         <div className="absolute w-full h-full bg-gradient-to-r from-black/80 via-black/40 to-black/80"></div>
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
-          <p className="cursor-pointer" onClick={router.back}>
+          <p className="cursor-pointer" onClick={() => router.back()}>
             <MdOutlineCancel className="text-white text-[35px]" />
           </p>
         </div>
@@ -165,7 +165,7 @@ export default function DetailPage() {
         <div className="mt-10 lg:mt-20">
           <div className="px-10 flex gap-3 pb-2 cursor-pointer font-semibold rounded">
             <div className="md:w-16 md:h-16 w-10 h-10">
-              <Link href="/">
+              <Link href={`/profile/${post.postedBy._id}`}>
                 <Image
                   src={post.postedBy.image}
                   alt={post.postedBy.userName}
@@ -176,7 +176,7 @@ export default function DetailPage() {
               </Link>
             </div>
             <div>
-              <Link href="/">
+              <Link href={`/profile/${post.postedBy._id}`}>
                 <div className="mt-1 flex flex-col gap-1">
                   <p className="flex gap-1 items-center md:text-md font-bold text-primary">
                     {post.postedBy.userName}

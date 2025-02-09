@@ -27,14 +27,14 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
     }
   };
 
-  const buttonStyle = "text-2xl text-white lg:text-3xl drop-shadow-lg";
+  const buttonStyle = "text-3xl text-white lg:text-4xl drop-shadow-lg";
 
   return (
     <div className="flex flex-col border-b-2 border-gray-200 pb-6 w-full">
       <div>
         <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
           <div className="md:w-16 md:h-16 w-10 h-10">
-            <Link href="/">
+            <Link href={`/profile/${post.postedBy._id}`}>
               <Image
                 src={post.postedBy.image}
                 alt={post.postedBy.userName}
@@ -45,11 +45,14 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
             </Link>
           </div>
           <div>
-            <Link href="/">
+            <Link href={`/profile/${post.postedBy._id}`}>
               <div className="flex items-center gap-2">
-                <p className="flex gap-1 items-center md:text-md font-bold text-primary">
-                  {post.postedBy.userName}
+                <p className="flex gap-1 items-center md:text-md font-bold text-primary lowercase">
+                  {post.postedBy.userName.replaceAll(" ", "")}
                   <MdVerified className="text-blue-500 text-md" />
+                </p>
+                <p className="capitalize text-gray-400 text-xs">
+                  {post.postedBy.userName}
                 </p>
               </div>
             </Link>
@@ -69,7 +72,6 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
               className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100"
               src={post.video.asset.url}
               ref={videoRef}
-              //onClick={onVideoPress}
             ></video>
           </Link>
 

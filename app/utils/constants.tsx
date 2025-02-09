@@ -1,6 +1,7 @@
 import { BsCode, BsEmojiSunglasses } from "react-icons/bs";
 import { GiCakeSlice, GiGalaxy, GiLipstick } from "react-icons/gi";
-import { FaPaw, FaMedal, FaGamepad } from "react-icons/fa";
+import { FaMusic, FaPaw, FaMedal, FaGamepad } from "react-icons/fa";
+import { MdCardTravel } from "react-icons/md";
 
 export const topics = [
   {
@@ -42,6 +43,16 @@ export const topics = [
     name: "deportes",
     icon: <FaMedal />,
     iconGradient: <FaMedal fill="url(#grad)" />,
+  },
+  {
+    name: "música",
+    icon: <FaMusic />,
+    iconGradient: <FaMusic fill="url(#grad)" />,
+  },
+  {
+    name: "viajes",
+    icon: <MdCardTravel />,
+    iconGradient: <MdCardTravel fill="url(#grad)" />,
   },
 ];
 
