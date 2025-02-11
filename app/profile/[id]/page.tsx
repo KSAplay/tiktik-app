@@ -2,31 +2,31 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import { MdVerified, MdVideocamOff } from "react-icons/md";
-import { IUser, Video } from "@/types";
+import { IUser, IVideo } from "@/types";
 import { NoResults } from "@/app/components/NoResults";
 import { useParams } from "next/navigation";
 import { VideoCard } from "@/app/components/VideoCard";
+import { MdVerified, MdVideocamOff } from "react-icons/md";
 
 const ProfilePage = () => {
   const { id } = useParams();
   const [user, setUser] = useState<IUser | null>(null);
-  const [userVideos, setUserVideos] = useState<Video[]>([]);
-  const [userLikedVideos, setUserLikedVideos] = useState<Video[]>([]);
-  const [showUserVideos, setShowUserVideos] = useState<boolean>(true);
-  const [videosList, setVideosList] = useState<Video[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [userVideos, setUserVideos] = useState<IVideo[]>([]);
+  const [userLikedVideos, setUserLikedVideos] = useState<IVideo[]>([]);
+  const [showUserVideos, setShowUserVideos] = useState(true);
+  const [videosList, setVideosList] = useState<IVideo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const videos = showUserVideos ? "border-b-2 border-black" : "text-gray-400";
   const liked = !showUserVideos ? "border-b-2 border-black" : "text-gray-400";
 
   useEffect(() => {
     const fetchDataUser = async () => {
-      setIsLoading(true);
       try {
-        const res = await fetch(`/api/profile/${id}`);
+        setIsLoading(true);
+        const res = await fetch(`/api/users/${id}`);
         if (!res.ok) {
-          throw new Error("Error fetching user details");
+          throw new Error("Error fetching user data");
         }
         const data = await res.json();
         setUser(data.user);
@@ -110,7 +110,7 @@ const ProfilePage = () => {
 
         <div className="flex gap-6 flex-wrap md:justify-start">
           {videosList.length > 0 ? (
-            videosList.map((post: Video, idx: number) => (
+            videosList.map((post: IVideo, idx: number) => (
               <VideoCard key={idx} post={post} />
             ))
           ) : (

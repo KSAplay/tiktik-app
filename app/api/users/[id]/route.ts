@@ -14,13 +14,9 @@ export async function GET(req: Request, { params }: { params: { id: string } }
   }
 
   try {
-    const query = singleUserQuery(id);
-    const userVideosQuery = userCreatedPostsQuery(id);
-    const userLikedVideosQuery = userLikedPostsQuery(id);
-
-    const user = await client.fetch(query);
-    const userVideos = await client.fetch(userVideosQuery);
-    const userLikedVideos = await client.fetch(userLikedVideosQuery);
+    const user = await client.fetch(singleUserQuery(id));
+    const userVideos = await client.fetch(userCreatedPostsQuery(id));
+    const userLikedVideos = await client.fetch(userLikedPostsQuery(id));
 
     if (!user) {
       return NextResponse.json(

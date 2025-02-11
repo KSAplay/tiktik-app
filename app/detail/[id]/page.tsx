@@ -38,6 +38,7 @@ export default function DetailPage() {
             throw new Error("Error fetching post details");
           }
           const data = await res.json();
+          console.log(data);
           setPost(data);
         } catch (error) {
           console.error("Error fetching post:", error);

@@ -1,5 +1,5 @@
 export const allPostsQuery = () => {
-  const query = `*[_type == "post"] | order(_createdAt desc){
+  const query = `*[_type == "post" && !(_id in path("drafts.**"))] | order(_createdAt desc) {
     _id,
     caption,
     hashtags,
@@ -31,7 +31,7 @@ export const allPostsQuery = () => {
 };
 
 export const postDetailQuery = (postId: string | string[]) => {
-  const query = `*[_type == "post" && _id == '${postId}']{
+  const query = `*[_type == "post" && _id == '${postId}' && !(_id in path("drafts.**"))]{
     _id,
     caption,
     hashtags,
@@ -61,7 +61,7 @@ export const postDetailQuery = (postId: string | string[]) => {
 };
 
 export const searchPostsQuery = (searchTerm: string | string[]) => {
-  const query = `*[_type == "post" && caption match '${searchTerm}*' || topic match '${searchTerm}*'] {
+  const query = `*[_type == "post" && !(_id in path("drafts.**")) && caption match '${searchTerm}*' || topic match '${searchTerm}*'] {
     _id,
     caption,
     hashtags,
@@ -104,7 +104,7 @@ export const allUsersQuery = () => {
 };
 
 export const userCreatedPostsQuery = (userId: string | string[]) => {
-  const query = `*[ _type == 'post' && userId == '${userId}'] | order(_createdAt desc){
+  const query = `*[ _type == "post" && userId == '${userId}' && !(_id in path("drafts.**"))] | order(_createdAt desc) {
     _id,
     caption,
     hashtags,
@@ -136,7 +136,7 @@ export const userCreatedPostsQuery = (userId: string | string[]) => {
 };
 
 export const userLikedPostsQuery = (userId: string | string[]) => {
-  const query = `*[_type == 'post' && '${userId}' in likes[]._ref ] | order(_createdAt desc) {
+  const query = `*[_type == "post" && '${userId}' in likes[]._ref && !(_id in path("drafts.**"))] | order(_createdAt desc) {
     _id,
     caption,
     hashtags,
@@ -168,7 +168,7 @@ export const userLikedPostsQuery = (userId: string | string[]) => {
 };
 
 export const topicPostsQuery = (topic: string | string[]) => {
-  const query = `*[_type == "post" && topic match '${topic}*'] {
+  const query = `*[_type == "post" && topic match '${topic}*' && !(_id in path("drafts.**"))] {
     _id,
     caption,
     hashtags,

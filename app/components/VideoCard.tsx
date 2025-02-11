@@ -1,17 +1,16 @@
 import React, { useState, useRef } from "react";
-import { NextPage } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
-import { Video } from "@/types";
+import { IVideo } from "@/types";
 
 interface IProps {
-  post: Video;
+  post: IVideo;
 }
 
-export const VideoCard: NextPage<IProps> = ({ post }) => {
+export const VideoCard = ({ post }: IProps) => {
   const [isHover, setIsHover] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
@@ -34,7 +33,7 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
       <div>
         <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
           <div className="md:w-16 md:h-16 w-10 h-10">
-            <Link href={`/profile/${post.postedBy._id}`}>
+            <Link href={`/profile/${post.postedBy._id}`} passHref>
               <Image
                 src={post.postedBy.image}
                 alt={post.postedBy.userName}
@@ -45,7 +44,7 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
             </Link>
           </div>
           <div>
-            <Link href={`/profile/${post.postedBy._id}`}>
+            <Link href={`/profile/${post.postedBy._id}`} passHref>
               <div className="flex items-center gap-2">
                 <p className="flex gap-1 items-center md:text-md font-bold text-primary lowercase">
                   {post.postedBy.userName.replaceAll(" ", "")}
@@ -65,7 +64,7 @@ export const VideoCard: NextPage<IProps> = ({ post }) => {
           onMouseLeave={() => setIsHover(false)}
           className="rounded-3xl overflow-hidden"
         >
-          <Link href={`/detail/${post._id}`}>
+          <Link href={`/detail/${post._id} `} passHref>
             <video
               loop
               muted={isVideoMuted}

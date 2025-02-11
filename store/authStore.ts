@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 
 interface AuthState {
   userProfile: IUser | null;
-  allUsers: IUser[];
+  allUsers: IUser[] | [];
   addUser: (user: IUser) => void;
   removeUser: () => void;
   fetchAllUsers: () => void;

@@ -1,4 +1,5 @@
 import { jwtDecode } from 'jwt-decode';
+import { IUser } from '@/types';
 
 // Definir la interfaz del token decodificado
 interface DecodedToken {
@@ -7,21 +8,13 @@ interface DecodedToken {
   sub: string;
 }
 
-// Definir la interfaz de usuario
-interface User {
-  _id: string;
-  _type: string;
-  userName: string;
-  image: string;
-}
-
-export const createOrGetUser = async (response: { credential: string }, addUser: (user: User) => void) => {
+export const createOrGetUser = async (response: { credential: string }, addUser: (user: IUser) => void) => {
   // Decodificar el token
   const decode: { name: string, picture: string, sub: string } = jwtDecode<DecodedToken>(response.credential);
   const { name, picture, sub } = decode;
 
   // Crear el objeto de usuario
-  const user: User = {
+  const user: IUser = {
     _id: sub,
     _type: "user",
     userName: name,

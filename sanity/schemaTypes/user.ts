@@ -12,7 +12,7 @@ const userSchema = {
       name: 'image',
       title: 'Image',
       type: 'string'
-    }
+    },
   ]
 };
 

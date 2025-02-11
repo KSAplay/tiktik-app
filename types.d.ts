@@ -1,4 +1,6 @@
 export interface IVideo {
+  _id: string;
+  userId: string;
   caption: string;
   hashtags: string[];
   topic: string;
@@ -8,17 +10,16 @@ export interface IVideo {
       url: string;
     };
   };
-  _id: string;
   postedBy: {
     _id: string;
+    _ref: string;
     userName: string;
     image: string;
   };
   likes: {
     postedBy: {
       _id: string;
-      userName: string;
-      image: string;
+      _ref: string;
     };
   }[];
   comments: {
@@ -29,7 +30,6 @@ export interface IVideo {
       _id: string;
     };
   }[];
-  userId: string;
 }
 
 export interface IUser {

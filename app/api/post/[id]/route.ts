@@ -26,9 +26,9 @@ export async function GET(req: Request, { params }: { params: { id: string } }
         { status: 404 }
       );
     }
-
     // Devuelve el primer elemento encontrado
     return NextResponse.json(data[0], { status: 200 });
+
   } catch (error) {
     console.error("Error al obtener el post:", error);
     return NextResponse.json(
