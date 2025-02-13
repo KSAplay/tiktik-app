@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter } from "next/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import { MdVerified } from "react-icons/md";
 import Image from "next/image";
 import { IVideo } from "@/types";
@@ -14,7 +14,7 @@ import Comments from "@/app/components/Comments";
 import LikeButton from "@/app/components/LikeButton";
 import { Any } from "next-sanity";
 
-export default function DetailPage() {
+function DetailPageContent() {
   const { id } = useParams();
   const [post, setPost] = useState<IVideo | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
@@ -215,5 +215,12 @@ export default function DetailPage() {
         </div>
       </div>
     </div>
+  );
+}
+export default function DetailPage() {
+  return (
+    <Suspense fallback="">
+      <DetailPageContent />
+    </Suspense>
   );
 }

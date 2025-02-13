@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { IUser, IVideo } from "@/types";
 import { NoResults } from "@/app/components/NoResults";
@@ -8,7 +8,7 @@ import { useParams } from "next/navigation";
 import { MdVerified, MdVideocamOff } from "react-icons/md";
 import { VideoCard } from "@/app/components/VideoCard";
 
-const ProfilePage = () => {
+function ProfilePageContent() {
   const { id } = useParams();
   const [user, setUser] = useState<IUser | null>(null);
   const [userVideos, setUserVideos] = useState<IVideo[]>([]);
@@ -123,6 +123,18 @@ const ProfilePage = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ProfilePage;
+export default function ProfilePage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-full w-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      }
+    >
+      <ProfilePageContent />
+    </Suspense>
+  );
+}

@@ -3,17 +3,17 @@
 import { IUser, IVideo } from "@/types";
 import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import { ClientSearchParams } from "@/app/components/ClientSeartchParams";
 import Link from "next/link";
 import { VideoCard } from "@/app/components/VideoCard";
 import { NoResults } from "../components/NoResults";
 import { MdVideocamOff, MdNoAccounts, MdVerified } from "react-icons/md";
 import useAuthStore from "@/store/authStore";
 
-function SearchContent() {
+const SearchContent = () => {
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const searchParams = useSearchParams();
+  const searchParams = ClientSearchParams();
   const searchQuery: string = searchParams.get("q") || "";
   const [showAccount, setShowAccounts] = useState(false);
   const { allUsers } = useAuthStore();
@@ -128,18 +128,16 @@ function SearchContent() {
       )}
     </div>
   );
-}
+};
 
 export default function Search() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex justify-center items-center h-full w-full">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
-        </div>
-      }
-    >
-      <SearchContent />
-    </Suspense>
-  );
+  <Suspense
+    fallback={
+      <div className="flex justify-center items-center h-full w-full">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      </div>
+    }
+  >
+    <SearchContent />
+  </Suspense>;
 }
