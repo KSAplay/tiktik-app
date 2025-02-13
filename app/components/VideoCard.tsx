@@ -50,7 +50,7 @@ export const VideoCard = ({ post }: IProps) => {
                   {post.postedBy.userName.replaceAll(" ", "")}
                   <MdVerified className="text-blue-500 text-md" />
                 </p>
-                <p className="capitalize text-gray-400 text-xs">
+                <p className="hidden md:block capitalize text-gray-400 text-xs">
                   {post.postedBy.userName}
                 </p>
               </div>

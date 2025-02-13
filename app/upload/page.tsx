@@ -83,13 +83,13 @@ const Upload = () => {
   };
 
   return (
-    <div className="w-full h-full absolute left-0 top-[60px] mb-10 pt-10 lg:pt-20 bg-[#F8F8F8] flex justify-center">
+    <div className="w-full h-full absolute left-0 top-0 bg-[#F8F8F8] flex justify-center items-center -z-1">
       {savingPost ? (
-        <div className="bg-white rounded-lg xl:h-[80vh] w-[80%] max-w-[1050px] flex gap-6 flex-wrap justify-evenly items-center p-14 pt-6">
+        <div className="bg-white rounded-xl w-[80%] max-w-[1050px] flex gap-6 flex-wrap justify-evenly items-center p-20">
           <p className="text-2xl font-bold">Publicando vídeo...</p>
         </div>
       ) : (
-        <div className="bg-white rounded-lg xl:h-[80vh] w-[80%] max-w-[1050px] flex gap-6 flex-wrap justify-evenly items-center p-14 pt-6">
+        <div className="bg-white rounded-xl w-[80%] max-w-[1050px] flex gap-6 flex-wrap justify-evenly items-center p-20">
           <div>
             <div>
               <p className="text-2xl font-bold">Subir Video</p>
@@ -100,7 +100,9 @@ const Upload = () => {
             <div className="flex flex-col justify-center items-center outline-none mt-10 w-[260px] h-[460px] cursor-pointer rounded-lg transition-all">
               {isLoading ? (
                 <div className="flex flex-col items-center justify-center h-full w-[290px] p-10 border-2 border-dashed border-gray-400 rounded-2xl">
-                  <p className="text-lg text-gray-400">Cargando...</p>
+                  <p className="text-base font-semibold text-gray-400">
+                    Subiendo video...
+                  </p>
                 </div>
               ) : (
                 <div>
@@ -157,7 +159,7 @@ const Upload = () => {
               )}
             </div>
           </div>
-          <div className="flex flex-col gap-3 pb-10 w-[300px]">
+          <div className="flex flex-col gap-3 w-[300px] mt-10 xl:mt-0">
             <label htmlFor="caption-video" className="text-base font-medium">
               Descripción
             </label>

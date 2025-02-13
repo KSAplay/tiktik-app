@@ -32,7 +32,7 @@ const LikeButton = ({ likes, handleLike, handleDislike }: IProps) => {
             onClick={handleDislike}
           >
             {svgGradient(
-              <MdFavorite className="text-lg md:text-2xl" fill="url(#grad)" />
+              <MdFavorite className="flex text-2xl" fill="url(#grad)" />
             )}
           </div>
         ) : (
@@ -40,7 +40,7 @@ const LikeButton = ({ likes, handleLike, handleDislike }: IProps) => {
             className="bg-primary rounded-full p-2 md:p-4"
             onClick={handleLike}
           >
-            <MdFavorite className="text-lg md:text-2xl" />
+            <MdFavorite className="text-2xl" />
           </div>
         )}
         <p className="text-md font-semibold ">{likes?.length || 0}</p>

@@ -38,7 +38,6 @@ export default function DetailPage() {
             throw new Error("Error fetching post details");
           }
           const data = await res.json();
-          console.log(data);
           setPost(data);
         } catch (error) {
           console.error("Error fetching post:", error);
@@ -106,8 +105,8 @@ export default function DetailPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p>Cargando...</p>
+      <div className="flex justify-center items-center h-full w-full">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
       </div>
     );
   }
@@ -121,7 +120,7 @@ export default function DetailPage() {
   }
 
   return (
-    <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap">
+    <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap h-full z-20">
       <div className="relative flex-2 w-[900px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
         <div className="absolute w-full h-full bg-gradient-to-r from-black/80 via-black/40 to-black/80"></div>
         <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
@@ -161,8 +160,8 @@ export default function DetailPage() {
           </div>
         </div>
       </div>
-      <div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
-        <div className="mt-10 lg:mt-20">
+      <div className="relative w-[1000px] md:w-[900px] lg:w-[700px] lg:h-full">
+        <div className="flex flex-col pt-10 lg:pt-20 lg:h-full">
           <div className="px-10 flex gap-3 pb-2 cursor-pointer font-semibold rounded">
             <div className="md:w-16 md:h-16 w-10 h-10">
               <Link href={`/profile/${post.postedBy._id}`}>

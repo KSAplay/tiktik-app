@@ -5,8 +5,8 @@ import Image from "next/image";
 import { IUser, IVideo } from "@/types";
 import { NoResults } from "@/app/components/NoResults";
 import { useParams } from "next/navigation";
-import { VideoCard } from "@/app/components/VideoCard";
 import { MdVerified, MdVideocamOff } from "react-icons/md";
+import { VideoCard } from "@/app/components/VideoCard";
 
 const ProfilePage = () => {
   const { id } = useParams();

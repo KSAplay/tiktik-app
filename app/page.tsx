@@ -2,18 +2,25 @@
 
 import { IVideo } from "@/types";
 import { useState, useEffect } from "react";
-import { VideoCard } from "./components/VideoCard";
+import { VideoCard } from "@/app/components/VideoCard";
 import { NoResults } from "./components/NoResults";
 import { MdVideocamOff } from "react-icons/md";
+import { useSearchParams } from "next/navigation";
 
 export default function Home() {
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const topicParams = useSearchParams();
+  const topicQuery = topicParams.get("topic");
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true);
       try {
-        const response = await fetch("/api/post");
+        const endpoint = topicQuery
+          ? `/api/discover?topic=${topicQuery}`
+          : "/api/post";
+        const response = await fetch(endpoint);
         const result = await response.json();
         setVideos(result);
       } catch (error) {
@@ -24,7 +31,7 @@ export default function Home() {
     };
 
     fetchData();
-  }, []);
+  }, [topicQuery]);
 
   if (isLoading) {
     return (

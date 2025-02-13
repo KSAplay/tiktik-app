@@ -11,7 +11,7 @@ export const NoResults = ({ text, icon: Icon }: IProps) => {
       <p className="text-8xl text-center">
         <Icon />
       </p>
-      <p className="text-base text-center">{text}</p>
+      <p className="text-base mt-5 text-center">{text}</p>
     </div>
   );
 };
