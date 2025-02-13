@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
@@ -10,7 +10,7 @@ import { SanityAssetDocument } from "next-sanity";
 
 import { topics } from "../utils/constants";
 
-const Upload = () => {
+const UploadContent = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [videoAsset, setVideoAsset] = useState<
     SanityAssetDocument | undefined
@@ -223,4 +223,16 @@ const Upload = () => {
   );
 };
 
-export default Upload;
+export default function Upload() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-full w-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      }
+    >
+      <UploadContent />
+    </Suspense>
+  );
+}

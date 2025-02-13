@@ -1,7 +1,7 @@
 "use client";
 
 import { IUser, IVideo } from "@/types";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
@@ -10,7 +10,7 @@ import { NoResults } from "../components/NoResults";
 import { MdVideocamOff, MdNoAccounts, MdVerified } from "react-icons/md";
 import useAuthStore from "@/store/authStore";
 
-export default function Search() {
+function SearchContent() {
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -127,5 +127,19 @@ export default function Search() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function Search() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-full w-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      }
+    >
+      <SearchContent />
+    </Suspense>
   );
 }

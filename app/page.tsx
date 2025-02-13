@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { IVideo } from "@/types";
 import { useState, useEffect } from "react";
 import { VideoCard } from "@/app/components/VideoCard";
@@ -7,7 +8,7 @@ import { NoResults } from "./components/NoResults";
 import { MdVideocamOff } from "react-icons/md";
 import { useSearchParams } from "next/navigation";
 
-export default function Home() {
+function HomeContent() {
   const [videos, setVideos] = useState<IVideo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const topicParams = useSearchParams();
@@ -51,5 +52,19 @@ export default function Home() {
         <NoResults text="No hay videos disponibles" icon={MdVideocamOff} />
       )}
     </div>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex justify-center items-center h-full w-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      }
+    >
+      <HomeContent />
+    </Suspense>
   );
 }
