@@ -105,31 +105,31 @@ function DetailPageContent() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
       </div>
     );
   }
 
   if (!post) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex h-screen items-center justify-center">
         <p>No se encontró el video.</p>
       </div>
     );
   }
 
   return (
-    <div className="flex w-full absolute left-0 top-0 bg-white flex-wrap lg:flex-nowrap h-full z-20">
-      <div className="relative flex-2 w-[900px] lg:w-9/12 flex justify-center items-center bg-blurred-img bg-no-repeat bg-cover bg-center">
-        <div className="absolute w-full h-full bg-gradient-to-r from-black/80 via-black/40 to-black/80"></div>
-        <div className="absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
+    <div className="absolute left-0 top-0 z-20 flex h-full w-full flex-wrap bg-white lg:flex-nowrap">
+      <div className="flex-2 relative flex w-[900px] items-center justify-center bg-blurred-img bg-cover bg-center bg-no-repeat lg:w-9/12">
+        <div className="absolute h-full w-full bg-gradient-to-r from-black/80 via-black/40 to-black/80"></div>
+        <div className="absolute left-2 top-6 z-50 flex gap-6 lg:left-6">
           <p className="cursor-pointer" onClick={() => router.back()}>
-            <MdOutlineCancel className="text-white text-[35px]" />
+            <MdOutlineCancel className="text-[35px] text-white" />
           </p>
         </div>
         <div className="relative">
-          <div className="lg:h-[100vh] h-[60vh]">
+          <div className="h-[60vh] lg:h-[100vh]">
             <video
               ref={videoRef}
               muted={isVideoMuted}
@@ -140,14 +140,14 @@ function DetailPageContent() {
             ></video>
           </div>
 
-          <div className="absolute top-[45%] left-[45%] cursor-pointer">
+          <div className="absolute left-[45%] top-[45%] cursor-pointer">
             {!playing && (
               <button type="button" onClick={onVideoClick}>
-                <BsFillPlayFill className="text-white text-6xl lg:text-8xl" />
+                <BsFillPlayFill className="text-6xl text-white lg:text-8xl" />
               </button>
             )}
           </div>
-          <div className="absolute bottom-5 lg:bottom-10 right-5 lg:right-10 cursor-pointer">
+          <div className="absolute bottom-5 right-5 cursor-pointer lg:bottom-10 lg:right-10">
             {isVideoMuted ? (
               <button onClick={() => setIsVideoMuted(false)}>
                 <HiVolumeOff className={buttonStyle} />
@@ -160,10 +160,10 @@ function DetailPageContent() {
           </div>
         </div>
       </div>
-      <div className="relative w-[1000px] md:w-[900px] lg:w-[700px] lg:h-full">
-        <div className="flex flex-col pt-10 lg:pt-20 lg:h-full">
-          <div className="px-10 flex gap-3 pb-2 cursor-pointer font-semibold rounded">
-            <div className="md:w-16 md:h-16 w-10 h-10">
+      <div className="relative w-[1000px] md:w-[900px] lg:h-full lg:w-[700px]">
+        <div className="flex flex-col pt-10 lg:h-full lg:pt-20">
+          <div className="flex cursor-pointer gap-3 rounded px-10 pb-2 font-semibold">
+            <div className="h-10 w-10 md:h-16 md:w-16">
               <Link href={`/profile/${post.postedBy._id}`}>
                 <Image
                   src={post.postedBy.image}
@@ -177,11 +177,11 @@ function DetailPageContent() {
             <div>
               <Link href={`/profile/${post.postedBy._id}`}>
                 <div className="mt-1 flex flex-col gap-1">
-                  <p className="flex gap-1 items-center md:text-md font-bold text-primary">
+                  <p className="md:text-md flex items-center gap-1 font-bold text-primary">
                     {post.postedBy.userName}
-                    <MdVerified className="text-blue-500 text-md" />
+                    <MdVerified className="text-md text-blue-500" />
                   </p>
-                  <p className="capitalize font-medium text-xs text-gray-400 hidden md:block">
+                  <p className="hidden text-xs font-medium capitalize text-gray-400 md:block">
                     {post.postedBy.userName}
                   </p>
                 </div>
@@ -189,14 +189,14 @@ function DetailPageContent() {
             </div>
           </div>
 
-          <p className="px-10 mt-2 text-base text-gray-600">
+          <p className="mt-2 px-10 text-base text-gray-600">
             {post.caption}{" "}
             <span className="font-semibold text-primary">
               {post.hashtags && post.hashtags.map((hashtag) => ` #${hashtag}`)}
             </span>
           </p>
 
-          <div className="px-10 mt-2 mb-2 flex flex-col justify-center">
+          <div className="mb-2 mt-2 flex flex-col justify-center px-10">
             {userProfile && (
               <LikeButton
                 likes={post.likes}

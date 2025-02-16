@@ -16,11 +16,11 @@ export const Discover = () => {
 
   return (
     <>
-      <div className="xl:border-b-2 xl:border-gray-200 pb-6">
-        <p className="text-gray-500 font-semibold m-3 mt-4 hidden xl:block">
+      <div className="pb-6 xl:border-b-2 xl:border-gray-200">
+        <p className="m-3 mt-4 hidden font-semibold text-gray-500 xl:block">
           Temas Populares
         </p>
-        <div className="flex gap-3 flex-wrap">
+        <div className="flex flex-wrap gap-3">
           {topics.map((item) => (
             <Link href={`/?topic=${item.name}`} key={item.name}>
               <div className={topic === item.name ? activeTopicBgStyle : ""}>
@@ -29,12 +29,12 @@ export const Discover = () => {
                     topic === item.name ? activeTopicStyle : topicStyle
                   }
                 >
-                  <span className="font-bold text-2xl xl:text-md">
+                  <span className="xl:text-md text-2xl font-bold">
                     {svgGradient(
-                      topic === item.name ? item.iconGradient : item.icon
+                      topic === item.name ? item.iconGradient : item.icon,
                     )}
                   </span>
-                  <span className="font-medium text-md hidden xl:block capitalize">
+                  <span className="text-md hidden font-medium capitalize xl:block">
                     {item.name}
                   </span>
                 </div>

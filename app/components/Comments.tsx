@@ -31,16 +31,16 @@ const Comments = ({
   const { userProfile, allUsers } = useAuthStore();
 
   return (
-    <div className="flex flex-col h-full">
-      <div className="border-t-2 border-gray-200 pt-4 px-10 bg-[#F8F8F8] border-b-2 lg:pb-0 flex-1 overflow-scroll">
+    <div className="flex h-full flex-col">
+      <div className="flex-1 overflow-scroll border-b-2 border-t-2 border-gray-200 bg-[#F8F8F8] px-10 pt-4 lg:pb-0">
         {comments?.length ? (
           comments.map((item, idx) => (
             <div key={idx} className="my-2">
               {allUsers.map(
                 (user) =>
                   user._id === (item.postedBy._id || item.postedBy._ref) && (
-                    <div className="p-2 items-center" key={idx}>
-                      <div className="flex center gap-3">
+                    <div className="items-center p-2" key={idx}>
+                      <div className="center flex gap-3">
                         <Link href={`/profile/${user._id}`}>
                           <Image
                             src={user.image}
@@ -50,30 +50,30 @@ const Comments = ({
                             className="mt-1 rounded-full"
                           />
                         </Link>
-                        <div className="flex flex-col flex-1">
-                          <div className="flex gap-1 items-center text-sm font-bold text-primary lowercase">
+                        <div className="flex flex-1 flex-col">
+                          <div className="flex items-center gap-1 text-sm font-bold lowercase text-primary">
                             <Link
                               href={`/profile/${user._id}`}
                               className="hover:underline"
                             >
                               {user.userName}
                             </Link>
-                            <MdVerified className="text-blue-500 text-sm" />
+                            <MdVerified className="text-sm text-blue-500" />
                           </div>
                           <div>
-                            <p className="md:text-base text-sm">
+                            <p className="text-sm md:text-base">
                               {item.comment}
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
-                  )
+                  ),
               )}
             </div>
           ))
         ) : (
-          <div className="flex flex-col items-center justify-center h-full w-full py-10">
+          <div className="flex h-full w-full flex-col items-center justify-center py-10">
             <NoResults
               text="¡Sé el primero en comentar!"
               icon={FaRegCommentDots}
@@ -83,7 +83,7 @@ const Comments = ({
       </div>
 
       {userProfile ? (
-        <div className="bottom-0 left-0 lg:py-4 py-4 px-4 w-full">
+        <div className="bottom-0 left-0 w-full px-4 py-4 lg:py-4">
           <form
             onSubmit={addComment}
             className="flex justify-around gap-4"
@@ -97,11 +97,11 @@ const Comments = ({
                 setComment(e.target.value);
               }}
               placeholder="Añade un comentario..."
-              className="bg-primary px-6 py-4 text-base font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 flex-1 rounded-lg"
+              className="flex-1 rounded-lg border-2 border-gray-100 bg-primary px-6 py-4 text-base font-medium focus:border-2 focus:border-gray-300 focus:outline-none"
               max={150}
             />
             <button
-              className={`text-base px-2 ${isPostingComment ? "text-gray-400" : "text-black font-semibold"}`}
+              className={`px-2 text-base ${isPostingComment ? "text-gray-400" : "font-semibold text-black"}`}
               onClick={addComment}
             >
               {isPostingComment ? "Comentando..." : "Comentar"}

@@ -29,10 +29,10 @@ export const VideoCard = ({ post }: IProps) => {
   const buttonStyle = "text-3xl text-white lg:text-4xl drop-shadow-lg";
 
   return (
-    <div className="flex flex-col border-b-2 border-gray-200 pb-6 w-full">
+    <div className="flex w-full flex-col border-b-2 border-gray-200 pb-6">
       <div>
-        <div className="flex gap-3 p-2 cursor-pointer font-semibold rounded">
-          <div className="md:w-16 md:h-16 w-10 h-10">
+        <div className="flex cursor-pointer gap-3 rounded p-2 font-semibold">
+          <div className="h-10 w-10 md:h-16 md:w-16">
             <Link href={`/profile/${post.postedBy._id}`} passHref>
               <Image
                 src={post.postedBy.image}
@@ -46,11 +46,11 @@ export const VideoCard = ({ post }: IProps) => {
           <div>
             <Link href={`/profile/${post.postedBy._id}`} passHref>
               <div className="flex items-center gap-2">
-                <p className="flex gap-1 items-center md:text-md font-bold text-primary lowercase">
+                <p className="md:text-md flex items-center gap-1 font-bold lowercase text-primary">
                   {post.postedBy.userName.replaceAll(" ", "")}
-                  <MdVerified className="text-blue-500 text-md" />
+                  <MdVerified className="text-md text-blue-500" />
                 </p>
-                <p className="hidden md:block capitalize text-gray-400 text-xs">
+                <p className="hidden text-xs capitalize text-gray-400 md:block">
                   {post.postedBy.userName}
                 </p>
               </div>
@@ -58,24 +58,24 @@ export const VideoCard = ({ post }: IProps) => {
           </div>
         </div>
       </div>
-      <div className="relative lg:ml-20 flex lg:w-[600px] w-[200px] gap-4">
+      <div className="relative flex w-[200px] gap-4 lg:ml-20 lg:w-[600px]">
         <div
           onMouseEnter={() => setIsHover(true)}
           onMouseLeave={() => setIsHover(false)}
-          className="rounded-3xl overflow-hidden"
+          className="overflow-hidden rounded-3xl"
         >
           <Link href={`/detail/${post._id} `} passHref>
             <video
               loop
               muted={isVideoMuted}
-              className="lg:w-[600px] h-[300px] md:h-[400px] lg:h-[530px] w-[200px] rounded-2xl cursor-pointer bg-gray-100"
+              className="h-[300px] w-[200px] cursor-pointer rounded-2xl bg-gray-100 md:h-[400px] lg:h-[530px] lg:w-[600px]"
               src={post.video.asset.url}
               ref={videoRef}
             ></video>
           </Link>
 
           {isHover && (
-            <div className="absolute bottom-6 md:bottom-4 cursor-pointer w-full flex justify-center items-center gap-10">
+            <div className="absolute bottom-6 flex w-full cursor-pointer items-center justify-center gap-10 md:bottom-4">
               {playing ? (
                 <button onClick={onVideoPress}>
                   <BsFillPauseFill className={buttonStyle} />

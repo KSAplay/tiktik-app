@@ -24,7 +24,7 @@ const SearchContent = () => {
   const videoStyle = !showAccount ? "border-b-2 border-black" : "text-gray-400";
 
   const searchAccounts = allUsers.filter((user: IUser) =>
-    user.userName.toLowerCase().includes(searchQuery.toLowerCase())
+    user.userName.toLowerCase().includes(searchQuery.toLowerCase()),
   );
 
   useEffect(() => {
@@ -48,23 +48,23 @@ const SearchContent = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
       </div>
     );
   }
 
   return (
     <div className="w-full">
-      <div className="flex gap-2 mb-4 mt-10 border-b-2 border-gray-200 bg-white w-full">
+      <div className="mb-4 mt-10 flex w-full gap-2 border-b-2 border-gray-200 bg-white">
         <p
-          className={`text-lg font-semibold cursor-pointer mt-2 mx-5 ${accountStyle}`}
+          className={`mx-5 mt-2 cursor-pointer text-lg font-semibold ${accountStyle}`}
           onClick={() => setShowAccounts(true)}
         >
           Cuentas
         </p>
         <p
-          className={`text-lg font-semibold cursor-pointer mt-2 mx-5 ${videoStyle}`}
+          className={`mx-5 mt-2 cursor-pointer text-lg font-semibold ${videoStyle}`}
           onClick={() => setShowAccounts(false)}
         >
           Videos
@@ -77,10 +77,10 @@ const SearchContent = () => {
             searchAccounts.map((user: IUser, idx) => (
               <div
                 key={idx}
-                className="flex items-center gap-4 border-b-2 border-gray-200 p-4 w-full"
+                className="flex w-full items-center gap-4 border-b-2 border-gray-200 p-4"
               >
                 <Link href={`/profile/${user._id}`} key={idx}>
-                  <div className="flex gap-4 items-center hover:bg-primary p-2 cursor-pointer font-semibold rounded">
+                  <div className="flex cursor-pointer items-center gap-4 rounded p-2 font-semibold hover:bg-primary">
                     <Image
                       src={user.image}
                       alt="User profile"
@@ -89,11 +89,11 @@ const SearchContent = () => {
                       className="rounded-full"
                     />
                     <div className="flex flex-col justify-center">
-                      <p className="flex gap-1 items-center text-lg font-bold text-primary lowercase">
+                      <p className="flex items-center gap-1 text-lg font-bold lowercase text-primary">
                         {user.userName.replaceAll(" ", "")}
-                        <MdVerified className="text-blue-500 text-lg" />
+                        <MdVerified className="text-lg text-blue-500" />
                       </p>
-                      <p className="capitalize text-gray-400 text-sm">
+                      <p className="text-sm capitalize text-gray-400">
                         {user.userName}
                       </p>
                     </div>
@@ -102,7 +102,7 @@ const SearchContent = () => {
               </div>
             ))
           ) : (
-            <div className="w-full flex justify-center items-center h-96">
+            <div className="flex h-96 w-full items-center justify-center">
               <NoResults
                 text={`No se encontraron cuentas para "${searchQuery}"`}
                 icon={MdNoAccounts}
@@ -111,13 +111,13 @@ const SearchContent = () => {
           )}
         </div>
       ) : (
-        <div className="md:mt-5 flex flex-wrap gap-6 md:justify-start">
+        <div className="flex flex-wrap gap-6 md:mt-5 md:justify-start">
           {videos.length ? (
             videos.map((video: IVideo, idx) => (
               <VideoCard post={video} key={idx} />
             ))
           ) : (
-            <div className="w-full flex justify-center items-center h-96">
+            <div className="flex h-96 w-full items-center justify-center">
               <NoResults
                 text={`No se encontraron videos para "${searchQuery}"`}
                 icon={MdVideocamOff}
@@ -133,8 +133,8 @@ const SearchContent = () => {
 export default function Search() {
   <Suspense
     fallback={
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
       </div>
     }
   >

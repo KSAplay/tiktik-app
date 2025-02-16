@@ -54,15 +54,15 @@ function ProfilePageContent() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+      <div className="flex h-full w-full items-center justify-center">
+        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
       </div>
     );
   }
 
   if (!user) {
     return (
-      <div className="flex justify-center items-center h-full w-full">
+      <div className="flex h-full w-full items-center justify-center">
         <p className="text-xl font-bold text-gray-500">Usuario no encontrado</p>
       </div>
     );
@@ -70,8 +70,8 @@ function ProfilePageContent() {
 
   return (
     <div className="w-full">
-      <div className="flex gap-6 md:gap-8 mt-2 mb-4 bg-white w-full">
-        <div className="flex items-center justify-center w-12 h-12 md:w-28 md:h-28">
+      <div className="mb-4 mt-2 flex w-full gap-6 bg-white md:gap-8">
+        <div className="flex h-12 w-12 items-center justify-center md:h-28 md:w-28">
           <Image
             src={user.image}
             alt="User profile"
@@ -82,33 +82,33 @@ function ProfilePageContent() {
           />
         </div>
         <div className="flex flex-col justify-center">
-          <p className="md:text-xl tracking-wider flex gap-1 items-center justify-center text-base font-bold text-primary lowercase">
+          <p className="flex items-center justify-center gap-1 text-base font-bold lowercase tracking-wider text-primary md:text-xl">
             {user.userName.replaceAll(" ", "")}
-            <MdVerified className="text-blue-500 text-md" />
+            <MdVerified className="text-md text-blue-500" />
           </p>
-          <p className="capitalize md:text-lg text-gray-400 text-xs">
+          <p className="text-xs capitalize text-gray-400 md:text-lg">
             {user.userName}
           </p>
         </div>
       </div>
 
       <div>
-        <div className="flex gap-2 mb-10 mt-10 border-b-2 border-gray-200 bg-white w-full">
+        <div className="mb-10 mt-10 flex w-full gap-2 border-b-2 border-gray-200 bg-white">
           <p
-            className={`text-lg font-semibold cursor-pointer mt-2 mx-5 ${videos}`}
+            className={`mx-5 mt-2 cursor-pointer text-lg font-semibold ${videos}`}
             onClick={() => setShowUserVideos(true)}
           >
             Videos
           </p>
           <p
-            className={`text-lg font-semibold cursor-pointer mt-2 mx-5 ${liked}`}
+            className={`mx-5 mt-2 cursor-pointer text-lg font-semibold ${liked}`}
             onClick={() => setShowUserVideos(false)}
           >
             Me gusta
           </p>
         </div>
 
-        <div className="flex gap-6 flex-wrap md:justify-start">
+        <div className="flex flex-wrap gap-6 md:justify-start">
           {videosList.length > 0 ? (
             videosList.map((post: IVideo, idx: number) => (
               <VideoCard key={idx} post={post} />
@@ -129,8 +129,8 @@ export default function ProfilePage() {
   return (
     <Suspense
       fallback={
-        <div className="flex justify-center items-center h-full w-full">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
       }
     >

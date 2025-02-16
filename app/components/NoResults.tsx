@@ -7,11 +7,11 @@ interface IProps {
 
 export const NoResults = ({ text, icon: Icon }: IProps) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full w-full">
-      <p className="text-8xl text-center">
+    <div className="flex h-full w-full flex-col items-center justify-center">
+      <p className="text-center text-8xl">
         <Icon />
       </p>
-      <p className="text-base mt-5 text-center">{text}</p>
+      <p className="mt-5 text-center text-base">{text}</p>
     </div>
   );
 };

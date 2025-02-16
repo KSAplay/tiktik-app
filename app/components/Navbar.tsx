@@ -26,8 +26,8 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="relative w-full flex items-center justify-center border-b-2 border-gray-200 py-3 px-4 z-10 bg-white">
-      <div className="flex justify-between items-center xl:max-w-[1600px] w-[1600px]">
+    <div className="relative z-10 flex w-full items-center justify-center border-b-2 border-gray-200 bg-white px-4 py-3">
+      <div className="flex w-[1600px] items-center justify-between xl:max-w-[1600px]">
         <Link href="/">
           <div className="w-[100px] md:w-[160px]">
             <Image
@@ -43,19 +43,19 @@ export const Navbar = () => {
           <form
             action="/search"
             onSubmit={handleSearch}
-            className="absolute md:static top-10 -left-20 bg-white"
+            className="absolute -left-20 top-10 bg-white md:static"
           >
             <input
               type="text"
               value={searchValue}
               onChange={(e) => setSearchValue(e.target.value)}
               placeholder="Busca cuentas y videos"
-              className="bg-primary p-3 pl-5 md:text-base font-medium border-2 border-gray-100 focus:outline-none focus:border-2 focus:border-gray-300 w-[300px] md:w-[350px] rounded-full md:top-0"
+              className="w-[300px] rounded-full border-2 border-gray-100 bg-primary p-3 pl-5 font-medium focus:border-2 focus:border-gray-300 focus:outline-none md:top-0 md:w-[350px] md:text-base"
             />
             <button
               onClick={handleSearch}
               type="submit"
-              className="absolute md:right-5 right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400"
+              className="absolute right-6 top-4 border-l-2 border-gray-300 pl-4 text-2xl text-gray-400 md:right-5"
             >
               <BiSearch />
             </button>
@@ -71,11 +71,11 @@ export const Navbar = () => {
                 onMouseLeave={() => setIsUploadHover(false)}
               >
                 <button
-                  className={`px-[2px] py-[2px] mr-3 rounded-lg cursor-pointer ${isUploadHover ? "bg-gradient-to-b from-[#FFA600] to-[#FF007D] px-[2px] py-[2px] mr-3 rounded-lg cursor-pointer" : "bg-gray-300"}`}
+                  className={`mr-3 cursor-pointer rounded-lg px-[2px] py-[2px] ${isUploadHover ? "mr-3 cursor-pointer rounded-lg bg-gradient-to-b from-[#FFA600] to-[#FF007D] px-[2px] py-[2px]" : "bg-gray-300"}`}
                 >
-                  <div className="bg-white rounded-[6px]">
+                  <div className="rounded-[6px] bg-white">
                     <div
-                      className={`flex items-center px-3 py-1 gap-1 font-semibold ${isUploadHover ? "bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent" : "bg-transparent"}`}
+                      className={`flex items-center gap-1 px-3 py-1 font-semibold ${isUploadHover ? "bg-gradient-to-b from-[#FFA600] to-[#FF007D] bg-clip-text text-transparent" : "bg-transparent"}`}
                     >
                       <svg
                         width="20"
@@ -108,7 +108,7 @@ export const Navbar = () => {
               </Link>
               {userProfile.image && (
                 <Link href={`/profile/${userProfile._id}`}>
-                  <div className="flex items-center cursor-pointer rounded-full bg-gray-100 hover:bg-gradient-to-b hover:from-[#FFA600] hover:to-[#FF007D] px-[3px] pt-[3px] pb-[2px]">
+                  <div className="flex cursor-pointer items-center rounded-full bg-gray-100 px-[3px] pb-[2px] pt-[3px] hover:bg-gradient-to-b hover:from-[#FFA600] hover:to-[#FF007D]">
                     <Image
                       src={userProfile.image}
                       alt={userProfile.userName}

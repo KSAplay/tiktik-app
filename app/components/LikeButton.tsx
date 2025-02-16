@@ -25,25 +25,25 @@ const LikeButton = ({ likes, handleLike, handleDislike }: IProps) => {
 
   return (
     <div className="flex gap-6">
-      <div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+      <div className="mt-4 flex cursor-pointer flex-col items-center justify-center">
         {alreadyLiked ? (
           <div
-            className="bg-primary rounded-full p-2 md:p-4"
+            className="rounded-full bg-primary p-2 md:p-4"
             onClick={handleDislike}
           >
             {svgGradient(
-              <MdFavorite className="flex text-2xl" fill="url(#grad)" />
+              <MdFavorite className="flex text-2xl" fill="url(#grad)" />,
             )}
           </div>
         ) : (
           <div
-            className="bg-primary rounded-full p-2 md:p-4"
+            className="rounded-full bg-primary p-2 md:p-4"
             onClick={handleLike}
           >
             <MdFavorite className="text-2xl" />
           </div>
         )}
-        <p className="text-md font-semibold ">{likes?.length || 0}</p>
+        <p className="text-md font-semibold">{likes?.length || 0}</p>
       </div>
     </div>
   );

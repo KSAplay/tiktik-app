@@ -34,12 +34,12 @@ export default function HomeContent() {
   return (
     <Suspense
       fallback={
-        <div className="flex justify-center items-center h-full w-full">
-          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-gray-900"></div>
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-t-2 border-gray-900"></div>
         </div>
       }
     >
-      <div className="flex flex-col gap-10 h-full w-full p-10">
+      <div className="flex h-full w-full flex-col gap-10 p-10">
         {videos.length ? (
           videos.map((video: IVideo) => (
             <VideoCard post={video} key={video._id} />

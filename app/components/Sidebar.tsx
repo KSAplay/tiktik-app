@@ -19,21 +19,21 @@ export const Sidebar = () => {
   return (
     <>
       <div
-        className="block xl:hidden m-2 ml-4 mt-3 text-xl"
+        className="m-2 ml-4 mt-3 block text-xl xl:hidden"
         onClick={() => setShowSidebar((prev) => !prev)}
       >
         {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       </div>
       {showSidebar && (
-        <div className="xl:w-400 w-20 flex flex-col justify-start mb-10 border-r-2 border-gray-100 xl:border-0 p-3">
-          <div className="xl:border-b-2 border-gray-200 xl:pb-4">
+        <div className="mb-10 flex w-20 flex-col justify-start border-r-2 border-gray-100 p-3 xl:w-400 xl:border-0">
+          <div className="border-gray-200 xl:border-b-2 xl:pb-4">
             <Link href="/">
               <div className={normalLinkHover}>
                 <div className={normalLink}>
                   <p className="text-2xl">
                     {svgGradient(<AiFillHome fill="url(#grad)" />)}
                   </p>
-                  <span className="text-xl hidden xl:block">Para ti</span>
+                  <span className="hidden text-xl xl:block">Para ti</span>
                 </div>
               </div>
             </Link>
