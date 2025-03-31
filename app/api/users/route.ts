@@ -1,4 +1,4 @@
-import { client } from '@/app/utils/client';
+import { client } from '@/sanity/lib/client';
 import { allUsersQuery } from '@/app/utils/queries';
 import { NextResponse } from 'next/server';
 

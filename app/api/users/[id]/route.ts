@@ -1,6 +1,6 @@
 import { singleUserQuery, userCreatedPostsQuery, userLikedPostsQuery } from "@/app/utils/queries";
 import { NextResponse } from "next/server";
-import { client } from "@/app/utils/client";
+import { client } from '@/sanity/lib/client';
 
 export async function GET(req: Request, { params }: { params: { id: string } }
 ) {

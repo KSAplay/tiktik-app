@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { IoMdCloudUpload } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import useAuthStore from "@/store/authStore";
-import { client } from "../utils/client";
+import { client } from "@/sanity/lib/client";
 import { SanityAssetDocument } from "next-sanity";
 
 import { topics } from "../utils/constants";

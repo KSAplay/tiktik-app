@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { searchPostsQuery } from '@/app/utils/queries';
-import { client } from '@/app/utils/client';
+import { client } from '@/sanity/lib/client';
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
