@@ -20,13 +20,17 @@ function DetailPageContent() {
   const [loading, setLoading] = useState<boolean>(true);
   const [playing, setPlaying] = useState<boolean>(false);
   const [isVideoMuted, setIsVideoMuted] = useState<boolean>(false);
-  const { userProfile } = useAuthStore();
+  const { userProfile, fetchAllUsers } = useAuthStore();
   const [comment, setComment] = useState<string>("");
   const [isPostingComment, setIsPostingComment] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const router = useRouter();
 
   const buttonStyle = "text-2xl text-white lg:text-3xl drop-shadow-lg";
+
+  useEffect(() => {
+    fetchAllUsers();
+  }, [fetchAllUsers]);
 
   useEffect(() => {
     if (id) {

@@ -5,6 +5,7 @@ import useAuthStore from "@/store/authStore";
 import { NoResults } from "@/app/components/NoResults";
 import { FaRegCommentDots } from "react-icons/fa6";
 import Link from "next/link";
+import { IComment } from "@/types";
 
 interface IProps {
   isPostingComment: boolean;
@@ -12,13 +13,6 @@ interface IProps {
   setComment: Dispatch<SetStateAction<string>>;
   addComment: (e: React.FormEvent) => void;
   comments: IComment[];
-}
-
-interface IComment {
-  comment: string;
-  length?: number;
-  _key: string;
-  postedBy: { _ref: string; _id: string };
 }
 
 const Comments = ({

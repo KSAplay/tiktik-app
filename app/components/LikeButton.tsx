@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import { MdFavorite } from "react-icons/md";
 import useAuthStore from "@/store/authStore";
 import { svgGradient } from "../utils/svgGradient";
-import { Any } from "next-sanity";
 
 interface IProps {
   handleLike: () => void;
   handleDislike: () => void;
-  likes: Any[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  likes: any[];
 }
 
 const LikeButton = ({ likes, handleLike, handleDislike }: IProps) => {

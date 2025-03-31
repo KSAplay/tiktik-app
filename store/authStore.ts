@@ -13,12 +13,23 @@ interface AuthState {
 const authStore = (set: (fn: (state: AuthState) => AuthState) => void): AuthState => ({
   userProfile: null,
   allUsers: [],
+
   addUser: (user: IUser) => set((state) => ({ ...state, userProfile: user })),
+
   removeUser: () => set((state) => ({ ...state, userProfile: null })),
+
   fetchAllUsers: async () => {
-    const response = await fetch('/api/users');
-    const data = await response.json();
-    set((state) => ({ ...state, allUsers: data }));
+    try {
+      const response = await fetch('/api/users');
+      if (!response.ok) {
+        throw new Error('Error al obtener los usuarios');
+      }
+      const data = await response.json();
+      set((state) => ({ ...state, allUsers: data }));
+    } catch (error) {
+      console.error('Error en fetchAllUsers:', error);
+      set((state) => ({ ...state, allUsers: [] }));
+    }
   }
 });
 
